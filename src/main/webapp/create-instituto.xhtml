@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Registro Instituto</title>
+	<h:outputStylesheet name="/css/bootstrap.min.css" />
+</h:head>
+<body background="paralax.jpg">
+
+	<h:form id="form" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<h2 style="text-align: center">Instituto</h2>
+			</div>
+		</div>
+		<hr />
+
+		<div class="form-group">
+			<h:outputLabel for="nombres" class="control-label col-sm-4">Nombres</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="nombres"
+					value="#{institutoBean.newInstituto.nombre}" class="form-control"
+					validatorMessage="No debe contener numeros o simbolos">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="nombres" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="direccion" class="control-label col-sm-4">Dirección</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputTextarea id="direccion"
+					value="#{institutoBean.newInstituto.direccion}" cols="50" rows="5"
+					class="form-control"
+					validatorMessage="Se requiere el campo Dirección">
+					<f:validateRequired />
+				</h:inputTextarea>
+				<h:message for="direccion" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="telefono" class="control-label col-sm-4">Telefono</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="telefono"
+					value="#{institutoBean.newInstituto.telefono}" class="form-control"
+					validatorMessage="No debe contener Strings">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="telefono" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-4">
+				<div class="col-sm-2">
+					<h:inputHidden value="#{institutoBean.edit}" />
+
+					<center>
+						<h:commandButton value="Guardar"
+							action="#{institutoBean.guardarInstituto()}"
+							class="btn btn-success" style="width: 80px;"></h:commandButton>
+					</center>
+				</div>
+			</div>
+		</div>
+		<h:messages globalOnly="true" />
+	</h:form>
+
+</body>
+</html>

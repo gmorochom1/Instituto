@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Cursos de un Estudiante</title>
+	<h:outputStylesheet name="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="estiloVentanas.css" />
+</h:head>
+<body background="paralax.jpg">
+	<h:form id="form" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<h2 style="text-align: center">Cursos de un Estudiante</h2>
+			</div>
+		</div>
+		<hr />
+
+		<div class="form-group">
+			<h:outputLabel for="estudiante" class="control-label col-sm-4">Cursos</h:outputLabel>
+			<div class="col-sm-4">
+				<h:selectOneMenu value="#{inscripcionBean.estudianteSeleccionado}"
+					cols="50" rows="5" class="form-control">
+					<f:selectItems value="#{inscripcionBean.comboEstudiantes}" />
+				</h:selectOneMenu>
+				<h:message for="estudiante" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-4">
+				<div class="col-sm-2">
+					<center>
+						<h:commandButton value="Mostrar Cursos"
+							action="#{inscripcionBean.loadCursosEst(inscripcionBean.estudianteSeleccionado)}"
+							class="btn btn-success" style="width: 200px;"></h:commandButton>
+					</center>
+				</div>
+			</div>
+		</div>
+
+		<div class="table-responsive">
+			<h:dataTable id="tabla-cursos" binding="#{table}" var="_curso"
+				value="#{inscripcionBean.cursosPorEstudiante}"
+				rendered="#{not empty inscripcionBean.cursosPorEstudiante}"
+				styleClass="simpletablestyle"
+				class="table table-responsive table-striped table-hover table-bordered">
+
+				<h:column>
+					<f:facet name="header">Codigo</f:facet>
+					<h:outputText value="#{_curso.idCurso}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+					<h:outputText value="#{_curso.nombre}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Fecha Inicio</f:facet>
+					<h:outputText value="#{_curso.fechaInicio}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Fecha Fin</f:facet>
+					<h:outputText value="#{_curso.fechaFin}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Dias</f:facet>
+					<h:outputText value="#{_curso.dias}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Horario</f:facet>
+					<h:outputText value="#{_curso.horario}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Costo</f:facet>
+					<h:outputText value="#{_curso.costo}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Profesor</f:facet>
+					<h:outputText value="#{_curso.profesor.nombre}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Carrera</f:facet>
+					<h:outputText value="#{_curso.carrera.nombre}" />
+
+				</h:column>
+			</h:dataTable>
+		</div>
+		<h:messages globalOnly="true" />
+	</h:form>
+</body>
+</html>

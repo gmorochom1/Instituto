@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<style>
+.containerSend {
+	/*   background:rgba(0,0,0,0.55); */
+	width: 400px;
+	height: 550px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 5px;
+	align-contet: center;
+	align-items: center;
+	border-bottom: 2px solid #2e2e2e;
+	border-right: 2px solid #2e2e2e;
+	-webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px
+		#000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+	box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px
+		5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.to-input {
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid #2e2e2e;
+	padding: 10px;
+	/*   border-radius: 5px; */
+}
+
+.sub-container {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	margin: 10px;
+	width: 100%;
+	heigth: auto;
+}
+
+.sub-container>.email-fields>span {
+	font-size: 16pt;
+	/*   color: #fff; */
+	padding: 5px;
+	margin: 10px 0;
+}
+
+.sub-container>.to-input {
+	alig-self: center;
+}
+
+.email-fields>span {
+	margin-right: 10px;
+}
+
+.sendButton {
+	/*   width: 25vw; */
+	border-radius: 5px;
+	background: rgba(250, 230, 210, 0.73);
+	border: 1px solid #3e3e3e;
+	cursor: pointer;
+	padding: 5px;
+	/*display: flex;*/
+	align-content: center;
+	align-items: center;
+	text-align: center;
+	margin: auto;
+}
+
+.sendButton:hover {
+	background: rgba(250, 230, 210, 0.23);
+	text-decoration: underline;
+}
+
+.sendButton>img {
+	align-self: center;
+	width: 20px;
+	heght: 20px;
+}
+
+@media screen and (max-width: 650px) {
+	.containerSend {
+		/*   background:rgba(0,0,0,0.55); */
+		width: 100vw;
+		height: 100vh;
+	}
+	.sendButton {
+		width: 50vw;
+	}
+}
+</style>
+</h:head>
+
+<body>
+
+	<h:form class="containerSend">
+		<h1>Email</h1>
+		<div class="sub-container">
+			<div class="emial-fields">
+				<span>Para:</span>
+				<h:inputText size="30" id="name" class="to-input"
+					value="#{correo.recipient}" required="true"
+					requiredMessage="Required" />
+			</div>
+			<h:message for="name" class="errorMessage" style="color:red" />
+		</div>
+
+		<div class="sub-container">
+			<div class="emial-fields">
+				<span>Asunto:</span>
+				<h:inputText size="35" id="subject" class="to-input"
+					value="#{correo.subject}" required="true"
+					requiredMessage="Required" />
+			</div>
+			<h:message for="subject" class="errorMessage" style="color:red" />
+		</div>
+
+
+		<div class="sub-container">
+			<span style="margin-top: 15px">Mensaje</span>
+			<div class="emial-fields">
+				<h:inputTextarea cols="45" rows="15" id="message" class="to-input"
+					value="#{correo.message}" required="true"
+					requiredMessage="Required" />
+			</div>
+			<h:message for="message" class="errorMessage" style="color:red" />
+		</div>
+
+		<h:commandButton class="sendButton" value="Enviar"
+			action="#{correo.send()}" />
+		<h:outputText value="#{correo.statusMessage}" style="color:red" />
+
+
+	</h:form>
+</body>
+</html>

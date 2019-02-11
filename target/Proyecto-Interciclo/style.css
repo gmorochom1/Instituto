@@ -1,0 +1,108 @@
+body, html {
+	width: 99vw;
+	height: 99vh;
+	/*  background: #ead5dc; */
+	/*background: "paralax.jpg"; */
+	/*   background:  #476c8a; */
+}
+.container {
+	position: relative;
+	align-self: center;
+	display: flex;
+	background-color: rgba(255, 255, 255, 255);
+	width: 25%;
+	margin: auto;
+	/*   margin-top:50vh; */
+	border-radius: 10px;
+	padding: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px
+		rgba(0, 0, 0, 0);
+	box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px
+		rgba(0, 0, 0, 0);
+}
+
+.containerForm {
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-item: center;
+	text-align: center;
+}
+
+.titleLogin {
+	font-size: 24pt;
+	width: 100%;
+	max-width: 100%;
+	margin: 30px;
+	text-align: center;
+	align-self: center;
+}
+
+.fieldInput {
+	width: 100%;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-item: center;
+	text-align: center;
+}
+
+.fieldInput>span {
+	margin-top: 5px;
+	font-weight: bold;
+}
+
+.fieldInput>input {
+	text-align: center;
+	align-self: center;
+	border-radius: 5px;
+	border: none;
+	background: transparent;
+	border-bottom: 1px solid #2e2e2e;
+	width: 50%;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+.buttonSubmit {
+	position: relative;
+	width: 35%;
+	align-self: center;
+	border: 2px solid #fff;
+	font-size: 14pt;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 10px 0;
+	color: #fff;
+	background-color: #5cb85c;
+	border-color: #4cae4c
+}
+
+.buttonSubmit:hover {
+	background: #989898;
+	color: #fff;
+	text-decoration: underline;
+}
+
+font {
+	font-size: 20pt;
+	text-align: center;
+	width: 100vw;
+	/* left: 50vw; */
+	top: 5vw;
+	position: absolute
+}
+
+@media screen and (max-width: 650px) {
+	.container {
+		width: 90%;
+	}
+	.buttonSubmit {
+		width: 50%;
+	}
+}

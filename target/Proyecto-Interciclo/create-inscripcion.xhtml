@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" href="paginas.css" />
+	<h:outputStylesheet name="/css/bootstrap.min.css" />
+	<title>Inscripciones</title>
+</h:head>
+<body background="paralax.jpg">
+	<center>
+		<h1>Agregar una Inscripcion</h1>
+	</center>
+	<hr />
+	<h:form style="margin-left: 400px">
+		<h:panelGrid columns="3">
+
+			<h:outputLabel value="Fecha de la Incripción"
+				style="margin-right: 20px" />
+			<p:calendar id="fechaFin"
+				value="#{inscripcionBean.newInscripcion.fecha}" class="form-control"
+				validatorMessage="La fecha es obligatoria" showOn="button"
+				style="display: contents;">
+			</p:calendar>
+		</h:panelGrid>
+		<br />
+		<hr />
+		Cédula Estudiante:
+		<h:inputText id="txtCedulaIngresada"
+			value="#{inscripcionBean.estudianteCedula}"
+			style="margin-right: 10px" />
+		<h:commandButton id="btLoad" style="margin-left: 20px"
+			action="#{inscripcionBean.loadEstudiante(inscripcionBean.estudianteCedula)}"
+			value="Buscar" class="btn btn-success" />
+		<h:message for="btLoad" />
+		<br />
+		<h:outputText id="txtValidar" value="#{inscripcionBean.encontrado}"
+			style="margin-right: 10px" />
+		<br />
+		<hr />
+		<h:panelGrid columns="2">
+
+			<h:outputLabel value="Cédula" />
+			<h:inputText value="#{inscripcionBean.newEstudianteTemp.cedula}"
+				id="txtCedula" size="30" disabled="true" style="margin-left: 30px" />
+
+			<h:outputLabel value="Nombres" />
+			<h:inputText value="#{inscripcionBean.newEstudianteTemp.nombres}"
+				id="txtNombres" size="30" disabled="true" style="margin-left: 30px" />
+
+			<h:outputLabel value="Email" />
+			<h:inputText value="#{inscripcionBean.newEstudianteTemp.email}"
+				id="txtEmail" size="30" disabled="true" style="margin-left: 30px" />
+
+			<h:outputLabel value="Dirección" />
+			<h:inputText value="#{inscripcionBean.newEstudianteTemp.direccion}"
+				id="txtDireccion" size="30" disabled="true"
+				style="margin-left: 30px" />
+		</h:panelGrid>
+		<br />
+		<hr />
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Cursos" style="margin-right: 30px" />
+			<h:selectOneMenu value="#{inscripcionBean.cursoSeleccionado}">
+				<f:selectItems value="#{inscripcionBean.comboCursos}"
+					style="margin-right: 30px" />
+			</h:selectOneMenu>
+			<h:commandButton id="btmInfo" style="margin-left: 30px"
+				action="#{inscripcionBean.loadCursos(inscripcionBean.cursoSeleccionado)}"
+				value="Descripcion" class="btn btn-success">
+				<f:actionListener
+					binding="#{inscripcionBean.loadEstudiante(inscripcionBean.estudianteCedula)}" />
+			</h:commandButton>
+		</h:panelGrid>
+		<br />
+
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Carrera" />
+			<h:inputText value="#{inscripcionBean.newCursoTemp.carrera.nombre}"
+				id="txtCarrera" size="30" disabled="true" style="margin-left: 30px" />
+			<h:message for="txtCarrera" />
+
+			<h:outputLabel value="Nombre" />
+			<h:inputText value="#{inscripcionBean.newCursoTemp.nombre}"
+				id="txtNombreCarrera" size="30" disabled="true"
+				style="margin-left: 30px" />
+			<h:message for="txtNombreCarrera" />
+
+			<h:outputLabel value="Fecha Inicio" />
+			<h:inputText value="#{inscripcionBean.newCursoTemp.fechaInicio}"
+				id="txtFechaInicio" size="30" disabled="true"
+				style="margin-left: 30px" />
+			<h:message for="txtFechaInicio" />
+
+			<h:outputLabel value="Fecha Fin" />
+			<h:inputText value="#{inscripcionBean.newCursoTemp.fechaFin}"
+				id="txtFechaFin" size="30" disabled="true" style="margin-left: 30px" />
+			<h:message for="txtFechaFin" />
+
+			<h:outputLabel value="Dias" />
+			<h:inputText value="#{inscripcionBean.newCursoTemp.dias}"
+				id="txtDias" size="30" disabled="true" style="margin-left: 30px" />
+			<h:message for="txtDias" />
+
+			<h:outputLabel value="Horario" />
+			<h:inputText value="#{inscripcionBean.newCursoTemp.horario}"
+				id="txtHorario" size="30" disabled="true" style="margin-left: 30px" />
+			<h:message for="txtHorario" />
+
+			<h:outputLabel value="Costo" />
+			<h:inputText value="#{inscripcionBean.newCursoTemp.costo}"
+				id="txtCosto" size="30" disabled="true" style="margin-left: 30px" />
+			<h:message for="txtCosto" />
+
+			<h:outputLabel value="Profesor" />
+			<h:inputText value="#{inscripcionBean.newCursoTemp.profesor.nombre}"
+				id="txtProfesor" size="30" disabled="true" style="margin-left: 30px" />
+			<h:message for="txtProfesor" />
+
+		</h:panelGrid>
+		<br />
+		<h:inputHidden value="#{inscripcionBean.editar}" />
+		<h:commandButton
+			action="#{inscripcionBean.guardarInscripcion(inscripcionBean.estudianteCedula, inscripcionBean.cursoSeleccionado)}"
+			value="Guardar" class="btn btn-success" style="margin-left: 120px" />
+		<h:messages globalOnly="true" />
+	</h:form>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Registro Curso</title>
+	<h:outputStylesheet name="/css/bootstrap.min.css" />
+</h:head>
+<body background="paralax.jpg">
+	<h:form id="form" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<h2 style="text-align: center">Curso</h2>
+			</div>
+		</div>
+		<hr />
+		<h:inputHidden id="id" value="#{cursoBean.newCurso.idCurso}" />
+		<div class="form-group">
+			<h:outputLabel for="nombre" class="control-label col-sm-4">Nombre</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="nombre" value="#{cursoBean.newCurso.nombre}"
+					class="form-control" validatorMessage="Se requiere el campo nombre">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="nombre" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="dias" class="control-label col-sm-4">Dias de clase</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="dias" value="#{cursoBean.newCurso.dias}"
+					class="form-control"
+					validatorMessage="Se requiere el campo Dias ejm. Lunes - Miercoles">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="dias" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="horario" class="control-label col-sm-4">Horario</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="horario" value="#{cursoBean.newCurso.horario}"
+					class="form-control"
+					validatorMessage="Se requiere el campo Horario ejm. 13:00 - 15:00">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="horario" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="costo" class="control-label col-sm-4">Costo</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="costo" value="#{cursoBean.newCurso.costo}"
+					class="form-control" validatorMessage="Se requiere el costo">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="costo" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="profesorAsignado" class="control-label col-sm-4">Asignar profesor </h:outputLabel>
+			<div class="col-sm-4">
+				<h:selectOneMenu value="#{cursoBean.profesorSeleccionado}" cols="50"
+					rows="5" class="form-control"
+					validatorMessage="Se requiere el campo Profesor">
+					<f:selectItems value="#{cursoBean.comboBoxProfesores}" />
+				</h:selectOneMenu>
+				<h:message for="profesorAsignado" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="fechaInicio" class="control-label col-sm-4">Fecha Inicio</h:outputLabel>
+			<div class="col-sm-4">
+				<p:calendar id="fechaInicio"
+					value="#{cursoBean.newCurso.fechaInicio}" class="form-control"
+					validatorMessage="La fecha de inicio es obligatoria"
+					showOn="button" style="display: contents;">
+				</p:calendar>
+				<h:message for="fechaInicio" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="fechaFin" class="control-label col-sm-4">Fecha Finalización</h:outputLabel>
+			<div class="col-sm-4">
+				<p:calendar id="fechaFin" value="#{cursoBean.newCurso.fechaFin}"
+					class="form-control"
+					validatorMessage="La fecha de finalización es obligatoria"
+					showOn="button" style="display: contents;">
+				</p:calendar>
+				<h:message for="fechaFin" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-4">
+				<div class="col-sm-2">
+					<h:inputHidden value="#{cursoBean.editar}" />
+					<center>
+						<h:commandButton value="Guardar"
+							action="#{cursoBean.guardarCursoProfesor()}"
+							class="btn btn-success" style="width: 80px;"></h:commandButton>
+					</center>
+				</div>
+			</div>
+		</div>
+		<h:messages globalOnly="true" />
+	</h:form>
+</body>
+</html>

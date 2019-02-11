@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet name="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="estiloVentanas.css" />
+</h:head>
+<body background="paralax.jpg">
+	<h:form>
+		<center>
+			<h2>
+				<h:outputText value="Listado de carreras" />
+			</h2>
+		</center>
+		<br />
+
+		<p:confirmDialog global="true">
+			<p:commandButton value="Si" type="button"
+				styleClass="ui-confirmdialog-yes" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" />
+		</p:confirmDialog>
+
+		<div class="table-responsive">
+			<h:dataTable id="tabla-carreras" binding="#{table}" var="_carrera"
+				value="#{carreraBean.carreras}"
+				rendered="#{not empty carreraBean.carreras}"
+				styleClass="simpletablestyle"
+				class="table table-responsive table-striped table-hover table-bordered">
+
+				<h:column>
+					<f:facet name="header">Nombre</f:facet>
+					<h:outputText value="#{_carrera.nombre}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Director</f:facet>
+					<h:outputText value="#{_carrera.director}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Actualizar</f:facet>
+					<h:commandButton action="#{carreraBean.editar(_carrera)}"
+						value="Editar" class="btn btn-primary" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Eliminar</f:facet>
+					<p:commandButton action="#{carreraBean.borrar(_carrera.nombre)}"
+						value="Eliminar" class="btn btn-danger">
+						<p:confirm header="Confirmación"
+							message="Esta seguro que desea eliminar ?" />
+					</p:commandButton>
+				</h:column>
+			</h:dataTable>
+		</div>
+		<h:messages globalOnly="true" />
+	</h:form>
+</body>
+</html>

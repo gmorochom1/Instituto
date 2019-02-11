@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Registro Profesor</title>
+	<h:outputStylesheet name="/css/bootstrap.min.css" />
+</h:head>
+<body background="paralax.jpg">
+	<h:form id="form" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<h2 style="text-align: center">Profesor</h2>
+			</div>
+		</div>
+		<hr />
+		<div class="form-group">
+			<h:outputLabel for="cedula" class="control-label col-sm-4">Cédula</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="cedula" value="#{profesorBean.newProfesor.cedula}"
+					class="form-control" validatorMessage="Ingrese una Cédula valida">
+					<f:ajax execute="cedula" render="cont"
+						listener="#{profesorBean.validarCedula(profesorBean.newProfesor.cedula)}"
+						event="keyup" />
+				</h:inputText>
+				<h:outputText id="cont" value="#{profesorBean.estado}" />
+				<h:message for="cedula" />
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<h:outputLabel for="nombres" class="control-label col-sm-4">Nombres</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="nombres" value="#{profesorBean.newProfesor.nombre}"
+					class="form-control"
+					validatorMessage="No debe contener numeros o simbolos">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="nombres" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="email" class="control-label col-sm-4">Email</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="email" value="#{profesorBean.newProfesor.email}"
+					class="form-control"
+					validatorMessage="No es una dirección de correo valida">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="email" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="password" class="control-label col-sm-4">Password</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="password"
+					value="#{profesorBean.newProfesor.password}" class="form-control"
+					validatorMessage="La contraseña es obligatoria">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="password" />
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<h:outputLabel for="direccion" class="control-label col-sm-4">Dirección</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputTextarea id="direccion"
+					value="#{profesorBean.newProfesor.direccion}" cols="50" rows="5"
+					class="form-control"
+					validatorMessage="Se requiere el campo Dirección">
+					<f:validateRequired />
+				</h:inputTextarea>
+				<h:message for="direccion" />
+			</div>
+		</div>
+		
+
+		<div class="form-group">
+			<h:outputLabel for="especialidad" class="control-label col-sm-4">Especialidad</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="especialidad"
+					value="#{profesorBean.newProfesor.especialidad}" cols="50" rows="5"
+					class="form-control"
+					validatorMessage="Se requiere el campo Especialidad">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="especialidad" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="carrera" class="control-label col-sm-4">Pertenece a </h:outputLabel>
+			<div class="col-sm-4">
+				<h:selectOneMenu value="#{profesorBean.carreraSeleccionada}"
+					cols="50" rows="5" class="form-control"
+					validatorMessage="Se requiere el campo Carrera">
+					<f:selectItems value="#{profesorBean.comboBox}" />
+				</h:selectOneMenu>
+				<h:message for="carrera" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-4">
+				<div class="col-sm-2">
+					<h:inputHidden value="#{profesorBean.editar}" />
+					<center>
+						<h:commandButton value="Guardar"
+							action="#{profesorBean.guardarProfesor()}"
+							class="btn btn-success" style="width: 80px;"></h:commandButton>
+					</center>
+				</div>
+			</div>
+		</div>
+
+		<h:messages globalOnly="true" />
+	</h:form>
+</body>
+</html>

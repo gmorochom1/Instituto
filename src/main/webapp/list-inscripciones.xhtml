@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet name="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="estiloVentanas.css" />
+</h:head>
+<body background="paralax.jpg">
+
+
+	<h:form>
+		<center>
+			<h2>
+				<h:outputText value="Inscripciones" />
+			</h2>
+		</center>
+		<br />
+
+		<p:confirmDialog global="true">
+			<p:commandButton value="Si" type="button"
+				styleClass="ui-confirmdialog-yes" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no" />
+		</p:confirmDialog>
+
+		<div class="table-responsive">
+			<h:dataTable id="tabla-cursos" binding="#{table}" var="_inscripcion"
+				value="#{inscripcionBean.inscripciones}"
+				rendered="#{not empty inscripcionBean.inscripciones}"
+				styleClass="simpletablestyle"
+				class="table table-responsive table-striped table-hover table-bordered">
+
+				<h:column>
+					<f:facet name="header">Codigo</f:facet>
+					<h:outputText value="#{_inscripcion.idInscripcion}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Fecha Inscripcion</f:facet>
+					<h:outputText value="#{_inscripcion.fecha}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Cedula Estudiante</f:facet>
+					<h:outputText value="#{_inscripcion.estudiante.cedula}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Nombre Estudiante</f:facet>
+					<h:outputText value="#{_inscripcion.estudiante.nombres}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Curso</f:facet>
+					<h:outputText value="#{_inscripcion.curso.nombre}" />
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">Costo</f:facet>
+					<h:outputText value="#{_inscripcion.curso.costo}" />
+
+				</h:column>
+				<!-- <h:column>
+					<f:facet name="header">Actualizar</f:facet>
+					<h:commandButton action="#{inscripcionBean.editar(_inscripcion)}"
+						value="Editar" class="btn btn-primary" />
+				</h:column>-->
+
+				<h:column>
+					<f:facet name="header">Eliminar</f:facet>
+					<p:commandButton
+						action="#{inscripcionBean.borrar(_inscripcion.idInscripcion)}"
+						value="Eliminar" class="btn btn-danger">
+						<p:confirm header="Confirmación"
+							message="Esta seguro que desea eliminar ?" />
+					</p:commandButton>
+				</h:column>
+			</h:dataTable>
+		</div>
+
+		<br />
+		<h:outputLabel for="resumen">Resumen:</h:outputLabel>
+		<br />
+		<h:outputLabel for="numero">Número de Inscripciones</h:outputLabel>
+		<h:outputText id="numero" value="#{inscripcionBean.numeroIns}"
+			class="form-control">
+		</h:outputText>
+		<h:message for="numero" />
+		<h:outputLabel for="total">Total Recaudado</h:outputLabel>
+		<h:outputText id="total" value="#{inscripcionBean.totalRecaudado}"
+			class="form-control">
+		</h:outputText>
+		<h:message for="total" />
+
+		<h:messages globalOnly="true" />
+	</h:form>
+</body>
+</html>

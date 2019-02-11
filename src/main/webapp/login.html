@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Instituto Palmer</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body background="paralax.jpg">
+	<div class="container">
+		<form class="containerForm" action="LoginServlet" method="post">
+			<div class="titleLogin">Inicio de Sesión</div>
+			<div class="fieldInput">
+				<span>Email:&nbsp;</span><input type="email" name="user">
+			</div>
+			<div class="fieldInput">
+				<span>Password:</span> <input type="password" name="pwd">
+			</div>
+			<input class="buttonSubmit" type="submit" value="Login" name="login">
+			<input class="buttonSubmit" type="submit" value="Registrarse"
+				name="register">
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Registro Estudiante</title>
+	<h:outputStylesheet name="/css/bootstrap.min.css" />
+</h:head>
+<body background="paralax.jpg">
+	<h:form id="form" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<h2 style="text-align: center">Estudiante</h2>
+			</div>
+		</div>
+		<hr />
+
+		<div class="form-group">
+			<h:outputLabel for="cedula" class="control-label col-sm-4">Cédula</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="cedula"
+					value="#{estudianteBean.newEstudiante.cedula}" class="form-control"
+					validatorMessage="Ingrese una Cédula valida">
+					<f:ajax execute="cedula" render="cont"
+						listener="#{estudianteBean.validarCedula(estudianteBean.newEstudiante.cedula)}"
+						event="keyup" />
+				</h:inputText>
+				<h:outputText id="cont" value="#{estudianteBean.estado}" />
+				<h:message for="cedula" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="nombres" class="control-label col-sm-4">Nombres</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="nombres"
+					value="#{estudianteBean.newEstudiante.nombres}"
+					class="form-control"
+					validatorMessage="No debe contener numeros o simbolos">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="nombres" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="direccion" class="control-label col-sm-4">Dirección</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputTextarea id="direccion"
+					value="#{estudianteBean.newEstudiante.direccion}" cols="50"
+					rows="5" class="form-control"
+					validatorMessage="Se requiere el campo Dirección">
+					<f:validateRequired />
+				</h:inputTextarea>
+				<h:message for="direccion" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="email" class="control-label col-sm-4">Email</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="email"
+					value="#{estudianteBean.newEstudiante.email}" class="form-control"
+					validatorMessage="No es una dirección de correo valida">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="email" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<h:outputLabel for="password" class="control-label col-sm-4">Password</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="password"
+					value="#{estudianteBean.newEstudiante.password}"
+					class="form-control"
+					validatorMessage="La contraseña es obligatoria">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for="password" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-4">
+				<div class="col-sm-2">
+					<h:inputHidden value="#{estudianteBean.editar}" />
+					<center>
+						<h:commandButton value="Guardar"
+							action="#{estudianteBean.guardarEstudiante()}"
+							class="btn btn-success" style="width: 80px;"></h:commandButton>
+					</center>
+				</div>
+			</div>
+		</div>
+
+		<h:messages globalOnly="true" />
+	</h:form>
+</body>
+</html>

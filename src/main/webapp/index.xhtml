@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta charset="UTF-8" />
+<title>#{institutoBean.newInstituto.nombre}</title>
+<link rel="stylesheet" href="estilos.css" />
+<style>
+.sendButtonLogOut {
+	width: 99%;
+	background-color: #ffffff;
+	border: 1px solid #3e3e3e;
+	cursor: pointer;
+	padding: 15px;
+	display: flex;
+	align-content: center;
+	align-items: center;
+	text-align: center;
+	text-c: center;
+	margin: auto;
+	font-size: 12pt;
+}
+}
+</style>
+</head>
+<body background="paralax.jpg">
+	<br></br>
+	<h1 id="titulo" align="center">
+		<img src="palmerLogo.png" />
+	</h1>
+
+	<header>
+		<nav class="navegacion">
+			<ul class="menu">
+				<li><a href="#">Instituto</a>
+					<ul class="submenu">
+						<li><a href="institucion.xhtml">Acerca de</a></li>
+					</ul></li>
+				<li><a href="#">Carreras</a>
+					<ul class="submenu">
+						<li><a href="create-carrera.xhtml">Crear</a></li>
+						<!--<li><a href="load-carrera.xhtml">Buscar</a></li>-->
+						<li><a href="list-carreras.xhtml">Listar</a></li>
+					</ul></li>
+				<li><a>Estudiantes</a>
+					<ul class="submenu">
+						<li><a href="create-estudiante.xhtml">Crear</a></li>
+						<li><a href="list-estudiantes.xhtml">Listado de
+								Estudiantes</a></li>
+					</ul></li>
+				<li><a>Profesores</a>
+					<ul class="submenu">
+						<li><a href="create-profesor.xhtml">Crear</a></li>
+						<!--<li><a href="load-profesor.xhtml">Buscar</a></li>-->
+						<li><a href="list-profesores.xhtml">Listado de Profesores</a></li>
+					</ul></li>
+				<li><a href="#">Gestión de Cursos</a>
+					<ul class="submenu">
+						<li><a href="create-curso.xhtml">Crear</a></li>
+						<!--<li><a href="load-curso.xhtml">Buscar</a></li>-->
+						<li><a href="list-cursos.xhtml">Listado de Cursos</a></li>
+						<li><a href="load-cursos-profesores.xhtml">Cursos de un
+								profesor</a></li>
+
+					</ul></li>
+				<li><a href="#">Gestión de Inscripciones</a>
+					<ul class="submenu">
+						<li><a href="create-inscripcion.xhtml">Inscribir</a></li>
+						<li><a href="list-inscripciones.xhtml">Listado de
+								Inscripciones</a></li>
+						<li><a href="load-estudiantes-curso.xhtml">Estudiantes
+								inscritos en un curso</a></li>
+						<li><a href="load-cursos-estudiante.xhtml">Cursos de un
+								estudiante</a></li>
+					</ul></li>
+				<li><a href="#">Cerrar Sesión</a>
+					<ul class="submenu">
+						<li><form action="LogoutServlet" method="post">
+								<h:commandButton class="sendButtonLogOut" action="LogoutServlet"
+									value="Cerrar Sesión" />
+							</form></li>
+					</ul></li>
+			</ul>
+		</nav>
+	</header>
+</body>
+</html>
